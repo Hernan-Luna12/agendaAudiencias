@@ -8,14 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -32,42 +25,24 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Carbon|null $updated_at
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
- * @property Carbon|null $two_factor_confirmed_at
- * @property bool $activo
- * @property int|null $idcentrotrabajo
+ * @property bool|null $activo
  *
  * @package App\Models
  */
 class User extends Authenticatable
 {
-	use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
-	use HasRoles;
-
 	protected $table = 'users';
-
-	public $incrementing = false;
 
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 		'current_team_id' => 'int',
-		'two_factor_confirmed_at' => 'datetime',
-		'activo' => 'bool',
-		'centro_trabajo_id' => 'int'
+		'activo' => 'bool'
 	];
 
 	protected $hidden = [
-		'email_verified_at',
 		'password',
 		'remember_token',
-		'current_team_id',
-		'profile_photo_path',
-		'two_factor_secret',
-		'two_factor_recovery_codes',
-		'two_factor_confirmed_at',
+		'two_factor_secret'
 	];
 
 	protected $fillable = [
@@ -80,23 +55,6 @@ class User extends Authenticatable
 		'profile_photo_path',
 		'two_factor_secret',
 		'two_factor_recovery_codes',
-		'two_factor_confirmed_at',
-		'activo',
-		'centro_trabajo_id'
+		'activo'
 	];
-
-	public function persona()
-	{
-		return $this->belongsTo(Persona::class, 'id');
-	}
-
-	public function ctg_centro_trabajo()
-	{
-		return $this->belongsTo(CtgCentrostrabajo::class, 'centro_trabajo_id');
-	}
-
-	public function role()
-	{
-		return $this->belongsTo(\Spatie\Permission\Models\Role::class, 'id');
-	}
 }

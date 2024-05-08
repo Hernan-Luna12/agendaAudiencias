@@ -177,3 +177,21 @@ function alertConfirm(mensaje = 'Alerta', url = 1, fun = 1) {
         });
     }
 }
+
+function confirSave(titulo,callback) {
+    Swal.fire({
+        title: `${titulo}`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Aceptar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
+        }
+    });
+}

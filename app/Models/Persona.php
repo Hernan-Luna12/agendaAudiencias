@@ -7,36 +7,54 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Persona
  * 
- * @property int $id
- * @property string|null $nombre
- * @property string|null $primerapellido
- * @property string|null $segundoapellido
- * @property int|null $tipo_persona_id
- * @property int|null $rol_persona_id
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property int $idPersona
+ * @property string $nombre
+ * @property string $primerApellido
+ * @property string $segundoApellido
+ * @property int $edad
+ * @property Carbon|null $create_at
+ * @property Carbon|null $update_at
+ * 
+ * @property Collection|Proceso[] $procesos
+ * @property Collection|Juece[] $jueces
  *
  * @package App\Models
  */
 class Persona extends Model
 {
-	protected $table = 'personas';
+	protected $table = 'Personas';
+	protected $primaryKey = 'idPersona';
+	public $timestamps = false;
 
 	protected $casts = [
-		'tipo_persona_id' => 'int',
-		'rol_persona_id' => 'int'
+		'edad' => 'int',
+		'create_at' => 'datetime',
+		'update_at' => 'datetime'
 	];
 
 	protected $fillable = [
 		'nombre',
-		'primerapellido',
-		'segundoapellido',
-		'tipo_persona_id',
-		'rol_persona_id'
+		'primerApellido',
+		'segundoApellido',
+		'edad',
+		'create_at',
+		'update_at'
 	];
+
+	public function procesos()
+	{
+		return $this->belongsToMany(Proceso::class, 'PersonasProcesos', 'idPersona', 'idProceso')
+					->withPivot('idPersonaproceso', 'create_at', 'update_at');
+	}
+
+	public function jueces()
+	{
+		return $this->hasMany(Juece::class, 'idPersonas');
+	}
 }

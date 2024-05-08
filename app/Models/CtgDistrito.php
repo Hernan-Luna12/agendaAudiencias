@@ -13,31 +13,38 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class CtgDistrito
  * 
- * @property int $id
- * @property string $name
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
+ * @property int $idDistrito
+ * @property string $nombreDistrito
  * @property bool $activo
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $created_at
  * 
- * @property Collection|CtgCentrosTrabajo[] $ctg_centros_trabajos
+ * @property Collection|CtgJuzgado[] $ctg_juzgados
+ * @property Collection|Proceso[] $procesos
  *
  * @package App\Models
  */
 class CtgDistrito extends Model
 {
-	protected $table = 'ctg_distritos';
+	protected $table = 'CtgDistritos';
+	protected $primaryKey = 'idDistrito';
 
 	protected $casts = [
 		'activo' => 'bool'
 	];
 
 	protected $fillable = [
-		'name',
+		'nombreDistrito',
 		'activo'
 	];
 
-	public function ctg_centros_trabajos()
+	public function ctg_juzgados()
 	{
-		return $this->hasMany(CtgCentrosTrabajo::class, 'distrito_id');
+		return $this->hasMany(CtgJuzgado::class, 'idDistrito');
+	}
+
+	public function procesos()
+	{
+		return $this->hasMany(Proceso::class, 'idDistrito');
 	}
 }

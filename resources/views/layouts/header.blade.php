@@ -21,7 +21,7 @@
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none">
                         <span class="user-name fw-bolder">{{ Auth()->user()->name }}</span>
-                        <span class="user-status">{{ Auth()->user()->role->name }}</span>
+                        {{--  <span class="user-status">{{ Auth()->user()->role->name }}</span>  --}}
                         {{-- <span class="user-status">Role</span> --}}
                     </div>
                     <span class="avatar">
@@ -50,10 +50,10 @@
                     @endswitch --}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                    {{-- <a class="dropdown-item" href="{{ route('profile.show') }}">
+                    <a class="dropdown-item" href="{{ route('profile.show') }}">
                         <i class="me-50" data-feather="user"></i> Perfil
                     </a>
-                    <div class="dropdown-divider"></div> --}}
+                    <div class="dropdown-divider"></div>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 

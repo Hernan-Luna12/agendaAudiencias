@@ -25,6 +25,12 @@
 	            	<span class="menu-title text-truncate align-bottom">{{ __('Dashboard') }}</span>
 	            </a>
             </li>
+            <li class=" nav-item {!! classActiveSegment(1, 'dashboard') !!}">
+            	<a class="d-flex align-items-center" href="{{ route('etapas.index') }}">
+	            	<i data-feather="home"></i>
+	            	<span class="menu-title text-truncate align-bottom">{{ __('Ctg Etapas') }}</span>
+	            </a>
+            </li>
             <li class="navigation-header mt-1">
             	<span>MENU</span>
             	<i data-feather="more-horizontal"></i>

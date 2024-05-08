@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Permission
+ * Class Role
  * 
  * @property int $id
  * @property string $name
@@ -19,27 +19,27 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * 
- * @property Collection|ModelHasPermission[] $model_has_permissions
- * @property Collection|Role[] $roles
+ * @property Collection|ModelHasRole[] $model_has_roles
+ * @property Collection|Permission[] $permissions
  *
  * @package App\Models
  */
-class Permission extends Model
+class Role extends Model
 {
-	protected $table = 'permissions';
+	protected $table = 'roles';
 
 	protected $fillable = [
 		'name',
 		'guard_name'
 	];
 
-	public function model_has_permissions()
+	public function model_has_roles()
 	{
-		return $this->hasMany(ModelHasPermission::class);
+		return $this->hasMany(ModelHasRole::class);
 	}
 
-	public function roles()
+	public function permissions()
 	{
-		return $this->belongsToMany(Role::class, 'role_has_permissions');
+		return $this->belongsToMany(Permission::class, 'role_has_permissions');
 	}
 }

@@ -106,3 +106,11 @@ Route::group(['middleware' => ['auth']] , function(){
     Route::post('/usuarios/activate/{id}', [App\Http\Controllers\UsuarioController::class, 'activate'])->name('usuarios.activate');
     Route::post('/usuarios/resetpassword/{id}', [App\Http\Controllers\UsuarioController::class, 'resetpassword'])->name('usuarios.resetpassword');
 });
+
+///***********************CATAGOLO ETAPA */
+Route::group(['middleware' => ['auth']] , function(){
+    Route::get('/catagolo/Etapas', [App\Http\Controllers\ctgEtapaController::class, 'index'])->name('etapas.index');
+    Route::get('/catagolo/Etapas/Create', [App\Http\Controllers\ctgEtapaController::class, 'create'])->name('etapas.create');
+    Route::post('/catagolo/Etapas/Storage', [App\Http\Controllers\ctgEtapaController::class, 'guardarEtapa'])->name('etapas.storage');
+
+});
