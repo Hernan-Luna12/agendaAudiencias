@@ -7,6 +7,6 @@
 
 <div class="row">
     <div id="small-img" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <img src="{{ url('public/img/escudoPJEV.png') }}" class="img-responsive inline-block" alt="Escudo PJEV" width="130">
+        <img src="{{ asset ('public/img/escudoPJEV.png') }}" class="img-responsive inline-block" alt="Escudo PJEV" width="130">
     </div>
 </div>
