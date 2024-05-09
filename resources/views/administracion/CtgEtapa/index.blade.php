@@ -16,7 +16,7 @@
                             <th class="centrar">Nombre</th>
                             
                             <th class="centrar">Estado</th>
-                            <th class="centrar"></th>
+                            
                             <th class="centrar">
                                 <button type="button" data-func="dt-add" class="abrir-modal btn btn-success btn-xs"
                                     data-bs-toggle="modal" data-bs-target="#createModal"
